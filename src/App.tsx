@@ -16,7 +16,7 @@ type TRectangleDimensions = {
 }
 
 function App() {
-  const [searchParams] = useSearchParams({ q: '' })
+  const [searchParams, setSearchParams] = useSearchParams({ q: '' })
   const query = searchParams.get('q')
   const [rectangleAreaArray, setRectangleArray] = useState<number[]>([])
   const [squareArea, setSquareArea] = useState<number>(0)
@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     if (query) {
-      const rectArray: string[] = query.split(',')
+      const rectArray: string[] = query.split('-')
       if (arrayHasOnlyNumbers(rectArray)) {
         const rectNumberArray = rectArray.map(Number)
         setRectangleArray(rectNumberArray)
@@ -116,7 +116,13 @@ function App() {
                 left={rectangleDimensions[index].left}
                 width={rectangleDimensions[index].x}
                 height={rectangleDimensions[index].y}
-                background={BACKGROUND_COLORS[index]}
+                background={
+                  index < BACKGROUND_COLORS.length
+                    ? BACKGROUND_COLORS[index]
+                    : BACKGROUND_COLORS[index - BACKGROUND_COLORS.length]
+                }
+                rectangleAreaArray={rectangleAreaArray}
+                setSearchParams={setSearchParams}
               />
             )
           })}

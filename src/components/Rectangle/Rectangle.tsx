@@ -10,6 +10,8 @@ type TRectangleProps = {
   width: number
   height: number
   background: string
+  rectangleAreaArray: number[]
+  setSearchParams: (query: string) => void
 }
 
 function Rectangle(props: TRectangleProps) {
@@ -24,6 +26,15 @@ function Rectangle(props: TRectangleProps) {
       background={props.background}
       onMouseEnter={() => setIsDescriptionShown(true)}
       onMouseLeave={() => setIsDescriptionShown(false)}
+      onClick={() => {
+        const newArray = props.rectangleAreaArray
+        const firstSplit = Math.floor(props.area / 3)
+        const secondSplit = props.area - firstSplit
+
+        newArray.splice(props.index + 1, 0, firstSplit)
+        newArray.splice(props.index + 2, 0, secondSplit)
+        props.setSearchParams(`q=${newArray.toString().replace(/,/g, '-')}`)
+      }}
     >
       <RectangleDescription $isShown={isDescriptionShown}>
         <p>top: {props.top.toFixed(2)}</p>
