@@ -1,4 +1,5 @@
-import { RectangleContainer } from './Rectangle.styled.ts'
+import { RectangleContainer, RectangleDescription } from './Rectangle.styled.ts'
+import { useState } from 'react'
 
 type TRectangleProps = {
   index: number
@@ -12,6 +13,8 @@ type TRectangleProps = {
 }
 
 function Rectangle(props: TRectangleProps) {
+  const [isDescriptionShown, setIsDescriptionShown] = useState<boolean>(false)
+
   return (
     <RectangleContainer
       key={props.index}
@@ -20,13 +23,18 @@ function Rectangle(props: TRectangleProps) {
       width={props.width * props.magnification}
       height={props.height * props.magnification}
       background={props.background}
+      onMouseEnter={() => setIsDescriptionShown(true)}
+      onMouseLeave={() => setIsDescriptionShown(false)}
     >
-      <p>index: {props.index}</p>
-      <p>top: {props.top.toFixed(2)}</p>
-      <p>left: {props.left.toFixed(2)}</p>
-      <p>x: {props.width.toFixed(2)}</p>
-      <p>y: {props.height.toFixed(2)}</p>
-      <p>area: {props.area}</p>
+      <RectangleDescription isShown={isDescriptionShown}>
+        <p>top: {props.top.toFixed(2)}</p>
+        <p>left: {props.left.toFixed(2)}</p>
+      </RectangleDescription>
+      <h2>{props.area}</h2>
+      <RectangleDescription isShown={isDescriptionShown}>
+        <p>x: {props.width.toFixed(2)}</p>
+        <p>y: {props.height.toFixed(2)}</p>
+      </RectangleDescription>
     </RectangleContainer>
   )
 }

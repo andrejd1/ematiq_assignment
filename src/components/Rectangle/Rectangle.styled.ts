@@ -20,3 +20,8 @@ export const RectangleContainer = styled.div<TRectangleContainerProps>`
   align-items: center;
   flex-direction: column;
 `
+
+export const RectangleDescription = styled.div<{ isShown: boolean }>`
+  opacity: ${(props) => (props.isShown ? '1' : '0')};
+  transition: opacity 0.5s;
+`
