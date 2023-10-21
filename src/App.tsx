@@ -4,23 +4,9 @@ import { useSearchParams } from 'react-router-dom'
 import Square from './components/Square/Square.tsx'
 import Rectangle from './components/Rectangle/Rectangle.tsx'
 import Error from './components/Error/Error.tsx'
+import { BACKGROUND_COLORS } from './utils/colors.ts'
 
 const MAGNIFICATION = 50
-
-const BACKGROUND_COLORS: string[] = [
-  '#F0F8FF',
-  '#FAEBD7',
-  '#00FFFF',
-  '#7FFFD4',
-  '#F0FFFF',
-  '#F5F5DC',
-  '#DEB887',
-  '#5F9EA0',
-  '#7FFF00',
-  '#FF7F50',
-  '#FFF8DC',
-  '#00FFFF',
-]
 
 type TRectangleDimensions = {
   x: number
