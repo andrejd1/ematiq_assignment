@@ -31,8 +31,8 @@ function Rectangle(props: TRectangleProps) {
         const firstSplit = Math.floor(props.area / 3)
         const secondSplit = props.area - firstSplit
 
-        newArray.splice(props.index + 1, 0, firstSplit)
-        newArray.splice(props.index + 2, 0, secondSplit)
+        newArray.splice(props.index, 1, firstSplit)
+        newArray.splice(props.index + 1, 0, secondSplit)
         props.setSearchParams(`q=${newArray.toString().replace(/,/g, '-')}`)
       }}
     >
