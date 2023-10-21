@@ -36,6 +36,8 @@ function App() {
       } else {
         setInvalidInput(true)
       }
+    } else {
+      setInvalidInput(true)
     }
   }, [query])
 
