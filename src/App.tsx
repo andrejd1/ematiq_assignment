@@ -6,7 +6,7 @@ import Rectangle from './components/Rectangle/Rectangle.tsx'
 import Error from './components/Error/Error.tsx'
 import { BACKGROUND_COLORS } from './utils/colors.ts'
 import { calculateRectangleDimensions } from './utils/calculators.ts'
-import { arrayHasOnlyNumbers } from './utils/validators.ts'
+import { hasArrayNumbersOnly } from './utils/validators.ts'
 
 const MAGNIFICATION = 50
 
@@ -23,12 +23,12 @@ function App() {
   const [rectangleAreaArray, setRectangleArray] = useState<number[]>([])
   const [squareArea, setSquareArea] = useState<number>(0)
   const [squareSide, setSquareSide] = useState<number>(0)
-  const [invalidInput, setInvalidInput] = useState<boolean>(true)
+  const [invalidInput, setInvalidInput] = useState<boolean>(false)
 
   useEffect(() => {
     if (query) {
       const rectArray: string[] = query.split('-')
-      if (arrayHasOnlyNumbers(rectArray)) {
+      if (hasArrayNumbersOnly(rectArray)) {
         const rectNumberArray = rectArray.map(Number)
         setRectangleArray(rectNumberArray)
         setSquareArea(rectNumberArray.reduce((acc, curr) => acc + curr))
@@ -46,7 +46,7 @@ function App() {
 
   return (
     <>
-      {rectangleAreaArray.length !== 0 && !invalidInput ? (
+      {rectangleAreaArray.length !== 0 ? (
         <Square side={squareSide * MAGNIFICATION}>
           {rectangleAreaArray.map((rectangle, index) => {
             const rectangleDimensions = calculateRectangleDimensions(
@@ -75,6 +75,8 @@ function App() {
             )
           })}
         </Square>
+      ) : !invalidInput ? (
+        <h1>LOADING...</h1>
       ) : (
         <Error />
       )}
