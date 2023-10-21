@@ -23,6 +23,7 @@ export const RectangleContainer = styled.div<TRectangleContainerProps>`
   justify-content: center;
   align-items: center;
   flex-direction: ${(props) => (props.width < props.height ? 'column' : 'row')};
+  border: 1px solid #000000;
 
   h2 {
     margin: 6px 12px;
