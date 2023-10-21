@@ -1,5 +1,5 @@
 import { RectangleContainer, RectangleDescription } from './Rectangle.styled.ts'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 type TRectangleProps = {
   index: number
@@ -16,6 +16,38 @@ type TRectangleProps = {
 
 function Rectangle(props: TRectangleProps) {
   const [isDescriptionShown, setIsDescriptionShown] = useState<boolean>(false)
+  const initialSplitRectangle = useRef<number>()
+
+  const splitRectangles = () => {
+    const newArray = props.rectangleAreaArray
+    const firstSplit = Math.floor(props.area / 3)
+    const secondSplit = props.area - firstSplit
+    initialSplitRectangle.current = props.area
+
+    newArray.splice(props.index, 1, firstSplit)
+    newArray.splice(props.index + 1, 0, secondSplit)
+    props.setSearchParams(`q=${newArray.toString().replace(/,/g, '-')}`)
+  }
+
+  const mergeRectangles = () => {
+    if (initialSplitRectangle.current) {
+      const newArray = props.rectangleAreaArray
+
+      for (let i = 0; i < props.rectangleAreaArray.length; i++) {
+        let currentSum = props.rectangleAreaArray[i]
+
+        for (let j = i + 1; j < props.rectangleAreaArray.length; j++) {
+          currentSum += props.rectangleAreaArray[j]
+          if (currentSum === initialSplitRectangle.current) {
+            newArray.splice(i, j - i + 1)
+            newArray.splice(i, 0, initialSplitRectangle.current)
+            props.setSearchParams(`q=${newArray.toString().replace(/,/g, '-')}`)
+            return
+          }
+        }
+      }
+    }
+  }
 
   return (
     <RectangleContainer
@@ -26,14 +58,10 @@ function Rectangle(props: TRectangleProps) {
       background={props.background}
       onMouseEnter={() => setIsDescriptionShown(true)}
       onMouseLeave={() => setIsDescriptionShown(false)}
-      onClick={() => {
-        const newArray = props.rectangleAreaArray
-        const firstSplit = Math.floor(props.area / 3)
-        const secondSplit = props.area - firstSplit
-
-        newArray.splice(props.index, 1, firstSplit)
-        newArray.splice(props.index + 1, 0, secondSplit)
-        props.setSearchParams(`q=${newArray.toString().replace(/,/g, '-')}`)
+      onClick={splitRectangles}
+      onContextMenu={(e) => {
+        e.preventDefault()
+        mergeRectangles()
       }}
     >
       <RectangleDescription $isShown={isDescriptionShown}>
