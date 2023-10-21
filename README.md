@@ -8,11 +8,12 @@ and calculate if the rectangles can be filled to the square.
 ## Conditions
 1. The value of the rectangle is within <0; 100>
 2. The order of the rectangle in the array determines the order of the rectangles in the square. Starting from the left top.
-3. If the input is invalid, show the error message
+3. If the input in the URL is invalid, show the error message
+4. The URL format is as follows [http://localhost:5173/?q=100,45,21,60,24](http://localhost:5173/?q=100,45,21,60,24)
 
 
 ## Getting Started
 
 1. Run `yarn` or `npm install`
 2. Run `yarn dev` or `npm run dev` for development
-3. Open [http://localhost:5173/](http://localhost:5173/) with your browser to see the result
+3. Open [http://localhost:5173/?q=*YOUR_NUMBER_ARRAY*](http://localhost:5173/?q=*YOUR_NUMBER_ARRAY*) with your browser to see the result
