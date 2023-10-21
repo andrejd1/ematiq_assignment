@@ -17,7 +17,6 @@ function Rectangle(props: TRectangleProps) {
 
   return (
     <RectangleContainer
-      key={props.index}
       top={props.top * props.magnification}
       left={props.left * props.magnification}
       width={props.width * props.magnification}
@@ -26,12 +25,12 @@ function Rectangle(props: TRectangleProps) {
       onMouseEnter={() => setIsDescriptionShown(true)}
       onMouseLeave={() => setIsDescriptionShown(false)}
     >
-      <RectangleDescription isShown={isDescriptionShown}>
+      <RectangleDescription $isShown={isDescriptionShown}>
         <p>top: {props.top.toFixed(2)}</p>
         <p>left: {props.left.toFixed(2)}</p>
       </RectangleDescription>
       <h2>{props.area}</h2>
-      <RectangleDescription isShown={isDescriptionShown}>
+      <RectangleDescription $isShown={isDescriptionShown}>
         <p>x: {props.width.toFixed(2)}</p>
         <p>y: {props.height.toFixed(2)}</p>
       </RectangleDescription>

@@ -26,7 +26,6 @@ function App() {
   useEffect(() => {
     if (query) {
       const rectArray: string[] = query.split(',')
-      console.log(arrayHasOnlyNumbers(rectArray))
       if (arrayHasOnlyNumbers(rectArray)) {
         const rectNumberArray = rectArray.map(Number)
         setRectangleArray(rectNumberArray)
@@ -109,6 +108,7 @@ function App() {
 
             return (
               <Rectangle
+                key={index}
                 index={index}
                 area={rectangle}
                 magnification={MAGNIFICATION}

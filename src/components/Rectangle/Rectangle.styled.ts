@@ -8,6 +8,10 @@ type TRectangleContainerProps = {
   background: string
 }
 
+type TRectangleDescriptionProps = {
+  $isShown: boolean
+}
+
 export const RectangleContainer = styled.div<TRectangleContainerProps>`
   position: absolute;
   top: ${(props) => props.top}px;
@@ -18,10 +22,14 @@ export const RectangleContainer = styled.div<TRectangleContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: ${(props) => (props.width < props.height ? 'column' : 'row')};
+
+  h2 {
+    margin: 6px 12px;
+  }
 `
 
-export const RectangleDescription = styled.div<{ isShown: boolean }>`
-  opacity: ${(props) => (props.isShown ? '1' : '0')};
+export const RectangleDescription = styled.div<TRectangleDescriptionProps>`
+  opacity: ${(props) => (props.$isShown ? '1' : '0')};
   transition: opacity 0.5s;
 `
