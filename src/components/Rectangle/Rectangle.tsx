@@ -39,8 +39,7 @@ function Rectangle(props: TRectangleProps) {
         for (let j = i + 1; j < props.rectangleAreaArray.length; j++) {
           currentSum += props.rectangleAreaArray[j]
           if (currentSum === initialSplitRectangle.current) {
-            newArray.splice(i, j - i + 1)
-            newArray.splice(i, 0, initialSplitRectangle.current)
+            newArray.splice(i, j - i + 1, initialSplitRectangle.current)
             props.setSearchParams(`q=${newArray.toString().replace(/,/g, '-')}`)
             return
           }

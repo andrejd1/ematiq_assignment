@@ -6,6 +6,7 @@ import Rectangle from './components/Rectangle/Rectangle.tsx'
 import Error from './components/Error/Error.tsx'
 import { BACKGROUND_COLORS } from './utils/colors.ts'
 import { calculateRectangleDimensions } from './utils/calculators.ts'
+import { arrayHasOnlyNumbers } from './utils/validators.ts'
 
 const MAGNIFICATION = 50
 
@@ -42,16 +43,6 @@ function App() {
     if (!squareArea) return
     setSquareSide(Math.sqrt(squareArea))
   }, [squareArea])
-
-  const arrayHasOnlyNumbers = (array: string[]): boolean => {
-    return array.every((element) => {
-      return (
-        !isNaN(Number(element)) &&
-        Number(element) >= 0 &&
-        Number(element) <= 100
-      )
-    })
-  }
 
   return (
     <>
