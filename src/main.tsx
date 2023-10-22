@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { BASE_PATH } from './utils/constants.ts'
 
 const router = createBrowserRouter([
   {
-    path: '/ematiq_assignment',
+    path: `/${BASE_PATH}`,
     element: <App />,
   },
 ])

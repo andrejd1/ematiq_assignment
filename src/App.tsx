@@ -7,8 +7,7 @@ import Error from './components/Error/Error.tsx'
 import { BACKGROUND_COLORS } from './utils/colors.ts'
 import { calculateRectangleDimensions } from './utils/calculators.ts'
 import { hasArrayNumbersOnly } from './utils/validators.ts'
-
-const MAGNIFICATION = 50
+import { MAGNIFICATION } from './utils/constants.ts'
 
 export type TRectangleDimensions = {
   x: number
@@ -61,7 +60,6 @@ function App() {
                 key={index}
                 index={index}
                 area={rectangle}
-                magnification={MAGNIFICATION}
                 top={rectangleDimensions[index].top}
                 left={rectangleDimensions[index].left}
                 width={rectangleDimensions[index].x}

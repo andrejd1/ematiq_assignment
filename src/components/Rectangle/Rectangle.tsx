@@ -1,10 +1,10 @@
 import { RectangleContainer, RectangleDescription } from './Rectangle.styled.ts'
 import { useRef, useState } from 'react'
+import { MAGNIFICATION } from '../../utils/constants.ts'
 
 type TRectangleProps = {
   index: number
   area: number
-  magnification: number
   top: number
   left: number
   width: number
@@ -50,10 +50,10 @@ function Rectangle(props: TRectangleProps) {
 
   return (
     <RectangleContainer
-      top={props.top * props.magnification}
-      left={props.left * props.magnification}
-      width={props.width * props.magnification}
-      height={props.height * props.magnification}
+      top={props.top * MAGNIFICATION}
+      left={props.left * MAGNIFICATION}
+      width={props.width * MAGNIFICATION}
+      height={props.height * MAGNIFICATION}
       background={props.background}
       onMouseEnter={() => setIsDescriptionShown(true)}
       onMouseLeave={() => setIsDescriptionShown(false)}
