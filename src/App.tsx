@@ -22,7 +22,7 @@ function App() {
   const [rectangleAreaArray, setRectangleArray] = useState<number[]>([])
   const [squareArea, setSquareArea] = useState<number>(0)
   const [squareSide, setSquareSide] = useState<number>(0)
-  const [invalidInput, setInvalidInput] = useState<boolean>(false)
+  const [isInputInvalid, setIsInputInvalid] = useState<boolean>(false)
 
   useEffect(() => {
     if (query) {
@@ -31,12 +31,12 @@ function App() {
         const rectNumberArray = rectArray.map(Number)
         setRectangleArray(rectNumberArray)
         setSquareArea(rectNumberArray.reduce((acc, curr) => acc + curr))
-        setInvalidInput(false)
+        setIsInputInvalid(false)
       } else {
-        setInvalidInput(true)
+        setIsInputInvalid(true)
       }
     } else {
-      setInvalidInput(true)
+      setIsInputInvalid(true)
     }
   }, [query])
 
@@ -75,7 +75,7 @@ function App() {
             )
           })}
         </Square>
-      ) : !invalidInput ? (
+      ) : !isInputInvalid ? (
         <h1>LOADING...</h1>
       ) : (
         <Error />
