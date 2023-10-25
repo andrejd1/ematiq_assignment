@@ -60,10 +60,7 @@ function App() {
                 key={index}
                 index={index}
                 area={rectangle}
-                top={rectangleDimensions[index].top}
-                left={rectangleDimensions[index].left}
-                width={rectangleDimensions[index].x}
-                height={rectangleDimensions[index].y}
+                rectangleDimensions={rectangleDimensions[index]}
                 background={
                   index < BACKGROUND_COLORS.length
                     ? BACKGROUND_COLORS[index]

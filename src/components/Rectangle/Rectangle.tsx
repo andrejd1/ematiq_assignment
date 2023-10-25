@@ -1,14 +1,12 @@
 import { RectangleContainer, RectangleDescription } from './Rectangle.styled.ts'
 import { useRef, useState } from 'react'
 import { MAGNIFICATION } from '../../utils/constants.ts'
+import { TRectangleDimensions } from '../../App.tsx'
 
 type TRectangleProps = {
   index: number
   area: number
-  top: number
-  left: number
-  width: number
-  height: number
+  rectangleDimensions: TRectangleDimensions
   background: string
   rectangleAreaArray: number[]
   setSearchParams: (query: string) => void
@@ -50,10 +48,10 @@ function Rectangle(props: TRectangleProps) {
 
   return (
     <RectangleContainer
-      top={props.top * MAGNIFICATION}
-      left={props.left * MAGNIFICATION}
-      width={props.width * MAGNIFICATION}
-      height={props.height * MAGNIFICATION}
+      top={props.rectangleDimensions.top * MAGNIFICATION}
+      left={props.rectangleDimensions.left * MAGNIFICATION}
+      width={props.rectangleDimensions.x * MAGNIFICATION}
+      height={props.rectangleDimensions.y * MAGNIFICATION}
       background={props.background}
       onMouseEnter={() => setIsDescriptionShown(true)}
       onMouseLeave={() => setIsDescriptionShown(false)}
@@ -64,13 +62,13 @@ function Rectangle(props: TRectangleProps) {
       }}
     >
       <RectangleDescription $isShown={isDescriptionShown}>
-        <p>top: {props.top.toFixed(2)}</p>
-        <p>left: {props.left.toFixed(2)}</p>
+        <p>top: {props.rectangleDimensions.top.toFixed(2)}</p>
+        <p>left: {props.rectangleDimensions.left.toFixed(2)}</p>
       </RectangleDescription>
       <h2>{props.area}</h2>
       <RectangleDescription $isShown={isDescriptionShown}>
-        <p>x: {props.width.toFixed(2)}</p>
-        <p>y: {props.height.toFixed(2)}</p>
+        <p>x: {props.rectangleDimensions.x.toFixed(2)}</p>
+        <p>y: {props.rectangleDimensions.y.toFixed(2)}</p>
       </RectangleDescription>
     </RectangleContainer>
   )
