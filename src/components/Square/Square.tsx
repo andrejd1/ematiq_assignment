@@ -7,7 +7,7 @@ type TSquareProps = {
 }
 
 function Square(props: TSquareProps) {
-  return <SquareContainer side={props.side}>{props.children}</SquareContainer>
+  return <SquareContainer $side={props.side}>{props.children}</SquareContainer>
 }
 
 export default Square
