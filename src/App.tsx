@@ -50,7 +50,7 @@ function App() {
       {rectangleAreaArray.length !== 0 ? (
         <Square side={squareSide * MAGNIFICATION}>
           {rectangleAreaArray.map((rectangle, index) => {
-            const rectangleDimensions = calculateRectangleDimensions(
+            const rectanglesDimensions = calculateRectangleDimensions(
               rectangleAreaArray,
               squareSide
             )
@@ -60,7 +60,7 @@ function App() {
                 key={index}
                 index={index}
                 area={rectangle}
-                rectangleDimensions={rectangleDimensions[index]}
+                rectangleDimensions={rectanglesDimensions[index]}
                 background={
                   index < BACKGROUND_COLORS.length
                     ? BACKGROUND_COLORS[index]
