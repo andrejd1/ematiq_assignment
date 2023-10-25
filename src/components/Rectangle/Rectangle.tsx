@@ -8,7 +8,7 @@ type TRectangleProps = {
   rectangleDimensions: TRectangleDimensions
   background: string
   rectangleAreaArray: number[]
-  setSearchParams: (query: string) => void
+  setRectangleArray: (rectangles: number[]) => void
 }
 
 function Rectangle(props: TRectangleProps) {
@@ -16,28 +16,31 @@ function Rectangle(props: TRectangleProps) {
   const initialSplitRectangle = useRef<number>()
 
   const splitRectangles = () => {
-    const newArray = props.rectangleAreaArray
+    const newArray = [...props.rectangleAreaArray]
     const firstSplit = Math.floor(props.area / 3)
     const secondSplit = props.area - firstSplit
     initialSplitRectangle.current = props.area
 
     newArray.splice(props.index, 1, firstSplit)
     newArray.splice(props.index + 1, 0, secondSplit)
-    props.setSearchParams(`q=${newArray.toString().replace(/,/g, '-')}`)
+    props.setRectangleArray(newArray)
   }
 
   const mergeRectangles = () => {
     if (initialSplitRectangle.current) {
-      const newArray = props.rectangleAreaArray
+      const newArray = [...props.rectangleAreaArray]
 
       for (let i = 0; i < props.rectangleAreaArray.length; i++) {
         let currentSum = props.rectangleAreaArray[i]
 
         for (let j = i + 1; j < props.rectangleAreaArray.length; j++) {
           currentSum += props.rectangleAreaArray[j]
-          if (currentSum === initialSplitRectangle.current) {
+          if (
+            currentSum === initialSplitRectangle.current &&
+            props.index === i
+          ) {
             newArray.splice(i, j - i + 1, initialSplitRectangle.current)
-            props.setSearchParams(`q=${newArray.toString().replace(/,/g, '-')}`)
+            props.setRectangleArray(newArray)
             return
           }
         }

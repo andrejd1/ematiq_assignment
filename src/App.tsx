@@ -1,5 +1,5 @@
 import './App.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import Square from './components/Square/Square.tsx'
 import Rectangle from './components/Rectangle/Rectangle.tsx'
@@ -23,6 +23,11 @@ function App() {
   const [squareSide, setSquareSide] = useState<number>(0)
   const [isInputInvalid, setIsInputInvalid] = useState<boolean>(false)
 
+  const memoizedRectangleAreaArray = useMemo(
+    () => rectangleAreaArray,
+    [rectangleAreaArray]
+  )
+
   useEffect(() => {
     if (query) {
       const rectArray: string[] = query.split('-')
@@ -38,6 +43,12 @@ function App() {
       setIsInputInvalid(true)
     }
   }, [query])
+
+  useEffect(() => {
+    setSearchParams(
+      `q=${memoizedRectangleAreaArray.toString().replace(/,/g, '-')}`
+    )
+  }, [memoizedRectangleAreaArray, setSearchParams])
 
   useEffect(() => {
     if (!squareArea) return
@@ -62,7 +73,7 @@ function App() {
                 rectangleDimensions={rectanglesDimensions[index]}
                 background={BACKGROUND_COLORS[index % BACKGROUND_COLORS.length]}
                 rectangleAreaArray={rectangleAreaArray}
-                setSearchParams={setSearchParams}
+                setRectangleArray={setRectangleArray}
               />
             )
           })}
