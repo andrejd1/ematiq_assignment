@@ -1,6 +1,6 @@
 import { TRectangleDimensions } from '../App.tsx'
 
-export const calculateRectangleDimensions = (
+export const calculateRectanglesDimensions = (
   rectangleAreaArray: number[],
   squareSide: number
 ): TRectangleDimensions[] => {

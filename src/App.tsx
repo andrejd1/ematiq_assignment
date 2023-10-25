@@ -5,7 +5,7 @@ import Square from './components/Square/Square.tsx'
 import Rectangle from './components/Rectangle/Rectangle.tsx'
 import Error from './components/Error/Error.tsx'
 import { BACKGROUND_COLORS } from './utils/colors.ts'
-import { calculateRectangleDimensions } from './utils/calculators.ts'
+import { calculateRectanglesDimensions } from './utils/calculators.ts'
 import { hasArrayNumbersOnly } from './utils/validators.ts'
 import { MAGNIFICATION } from './utils/constants.ts'
 
@@ -50,7 +50,7 @@ function App() {
       {rectangleAreaArray.length !== 0 ? (
         <Square side={squareSide * MAGNIFICATION}>
           {rectangleAreaArray.map((rectangle, index) => {
-            const rectanglesDimensions = calculateRectangleDimensions(
+            const rectanglesDimensions = calculateRectanglesDimensions(
               rectangleAreaArray,
               squareSide
             )
