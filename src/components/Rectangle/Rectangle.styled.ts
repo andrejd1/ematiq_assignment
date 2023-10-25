@@ -1,11 +1,10 @@
 import styled from 'styled-components'
+import { TRectangleDimensions } from '../../App.tsx'
+import { MAGNIFICATION } from '../../utils/constants.ts'
 
 type TRectangleContainerProps = {
-  top: number
-  left: number
-  width: number
-  height: number
-  background: string
+  $rectangleDimensions: TRectangleDimensions
+  $background: string
 }
 
 type TRectangleDescriptionProps = {
@@ -14,15 +13,18 @@ type TRectangleDescriptionProps = {
 
 export const RectangleContainer = styled.div<TRectangleContainerProps>`
   position: absolute;
-  top: ${(props) => props.top}px;
-  left: ${(props) => props.left}px;
-  width: ${(props) => props.width}px;
-  height: ${(props) => props.height}px;
-  background: ${(props) => props.background};
+  top: ${(props) => props.$rectangleDimensions.top * MAGNIFICATION}px;
+  left: ${(props) => props.$rectangleDimensions.left * MAGNIFICATION}px;
+  width: ${(props) => props.$rectangleDimensions.x * MAGNIFICATION}px;
+  height: ${(props) => props.$rectangleDimensions.y * MAGNIFICATION}px;
+  background: ${(props) => props.$background};
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: ${(props) => (props.width < props.height ? 'column' : 'row')};
+  flex-direction: ${(props) =>
+    props.$rectangleDimensions.x < props.$rectangleDimensions.y
+      ? 'column'
+      : 'row'};
   border: 1px solid #000000;
 
   h2 {

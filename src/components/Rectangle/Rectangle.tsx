@@ -1,6 +1,5 @@
 import { RectangleContainer, RectangleDescription } from './Rectangle.styled.ts'
 import { useRef, useState } from 'react'
-import { MAGNIFICATION } from '../../utils/constants.ts'
 import { TRectangleDimensions } from '../../App.tsx'
 
 type TRectangleProps = {
@@ -48,11 +47,8 @@ function Rectangle(props: TRectangleProps) {
 
   return (
     <RectangleContainer
-      top={props.rectangleDimensions.top * MAGNIFICATION}
-      left={props.rectangleDimensions.left * MAGNIFICATION}
-      width={props.rectangleDimensions.x * MAGNIFICATION}
-      height={props.rectangleDimensions.y * MAGNIFICATION}
-      background={props.background}
+      $rectangleDimensions={props.rectangleDimensions}
+      $background={props.background}
       onMouseEnter={() => setIsDescriptionShown(true)}
       onMouseLeave={() => setIsDescriptionShown(false)}
       onClick={splitRectangles}
