@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { MAGNIFICATION } from '../../utils/constants.ts'
 
 type TSquareContainerProps = {
   $side: number
@@ -6,8 +7,8 @@ type TSquareContainerProps = {
 
 export const SquareContainer = styled.div<TSquareContainerProps>`
   position: relative;
-  width: ${(props) => props.$side}px;
-  height: ${(props) => props.$side}px;
+  width: ${(props) => props.$side * MAGNIFICATION}px;
+  height: ${(props) => props.$side * MAGNIFICATION}px;
   background: #ffffff;
   color: #000000;
 `

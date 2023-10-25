@@ -7,7 +7,6 @@ import Error from './components/Error/Error.tsx'
 import { BACKGROUND_COLORS } from './utils/colors.ts'
 import { calculateRectanglesDimensions } from './utils/calculators.ts'
 import { hasArrayNumbersOnly } from './utils/validators.ts'
-import { MAGNIFICATION } from './utils/constants.ts'
 
 export type TRectangleDimensions = {
   x: number
@@ -48,7 +47,7 @@ function App() {
   return (
     <>
       {rectangleAreaArray.length !== 0 ? (
-        <Square side={squareSide * MAGNIFICATION}>
+        <Square side={squareSide}>
           {rectangleAreaArray.map((rectangle, index) => {
             const rectanglesDimensions = calculateRectanglesDimensions(
               rectangleAreaArray,
