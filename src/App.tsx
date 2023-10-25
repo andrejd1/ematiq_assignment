@@ -61,11 +61,7 @@ function App() {
                 index={index}
                 area={rectangle}
                 rectangleDimensions={rectanglesDimensions[index]}
-                background={
-                  index < BACKGROUND_COLORS.length
-                    ? BACKGROUND_COLORS[index]
-                    : BACKGROUND_COLORS[index - BACKGROUND_COLORS.length]
-                }
+                background={BACKGROUND_COLORS[index % BACKGROUND_COLORS.length]}
                 rectangleAreaArray={rectangleAreaArray}
                 setSearchParams={setSearchParams}
               />
